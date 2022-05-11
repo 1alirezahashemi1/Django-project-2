@@ -1,0 +1,10 @@
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        {% for cat in categories %}
+            <li>
+                <a href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+            </li> 
+        {% endfor %}                    
+    </ul>
+</div>
+         

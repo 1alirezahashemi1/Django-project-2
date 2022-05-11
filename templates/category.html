@@ -1,24 +1,25 @@
 <!DOCTYPE html>
+<html lang="en">
 {% load temp_tags %}
 {% load static %}
-<html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog  {% block title %} {% endblock title %}</title>
+    <title>Clean Blog</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Theme CSS -->
-    <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
-    
+    <link href="{% static 'css/clean-blog.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/rtl.css'%}" rel="stylesheet">
+
     <!-- Custom Fonts -->
-    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -29,15 +30,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<style>
-h1 {
-  background-color: #80ced6;
-}
+
 </head>
-</style>
 
 <body>
-
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -48,40 +44,65 @@ h1 {
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">{% title %}</a>
+                <a class="navbar-brand" href="index.html">وبلاگ جنگویی </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            {% category_navbar %}
-            <!-- /.navbar-collapse -->
+        {% category_navbar %}
         </div>
         <!-- /.container -->
     </nav>
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image:  url({{blog.thumbnail.url}}">
+    <header class="intro-header" style="background-image: url(http://yesofcorsa.com/wp-content/uploads/2017/05/Bookshelves-Wallpaper-For-Desktop.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        {% block title_header %}
-                        <h1>Clean Blog</h1>
-                        {% endblock title_header %}
-                            <hr class="small">
-                        {% block under_title %}
-                            <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
-                        {% endblock under_title %}
+                        <h1 height = 50>Clean Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">Welcome</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-{% block content %}
 
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% for blog in category.blogs.all %}
+                <div class="post-preview">
+                    <a href="{% url 'blog:detail' blog.slug %}">
+                        <h2 class="post-title">
+                           {{blog.title}}
+                        </h2>
+                        <h3 class="post-subtitle">
+                           {{blog.content | truncatewords:30}}                           
+                        </h3>
+                    </a>
+                        {% for cat in blog.category.all %}
+                            <a href="#"><span># {{cat.title}}</span></a>                    
+                        {% endfor %} 
+                    <p class="post-meta">نوشته شده توسط<a href="#"> علیرضا</a> {{blog.jcreated}}</p>
+                </div>
+                <hr>
+            {% endfor %}
 
-{% endblock content %}
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">پست های قدیمی تر &larr;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <hr>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -113,24 +134,25 @@ h1 {
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2022</p>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- jQuery -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
-    <script src="{% static 'js/contact_me.js' %}"></script>
+    <script src="{% static 'js/jqBootstrapValidation.js'%}"></script>
+    <script src="{% static 'js/clean-blog.min.js'%}"></script>
 
     <!-- Theme JavaScript -->
-    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+    <script src="{% static 'js/clean-blog.min.js'%}"></script>
 
 </body>
+
 </html>

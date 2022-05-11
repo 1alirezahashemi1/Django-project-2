@@ -1,0 +1,25 @@
+@font-face {
+    font-family: Sahel;
+    src: url('Sahel.eot');
+    src: url('Sahel.eot?#iefix') format('embedded-opentype'), url('Sahel.woff2') format('woff2'), url('Sahel.woff') format('woff'), url('Sahel.ttf') format('truetype');
+    font-weight: normal;
+}
+
+.pager .next>a,
+.pager .next>span {
+    float: left;
+    background-color: #d1d1d1;
+}
+
+.pager li>a:focus,
+.pager li>a:hover {
+    color: #fff;
+    background-color: #797676ab;
+    border: 1px solid #ffffff;
+}
+
+body {
+    direction: rtl;
+    text-align: right;
+    font-family: Sahel !important;
+}

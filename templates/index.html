@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load temp_tags %}
 {% load static %}
 <head>
 
@@ -13,9 +14,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
-
     <!-- Theme CSS -->
     <link href="{% static 'css/clean-blog.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/rtl.css'%}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
@@ -43,27 +44,11 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html">وبلاگ جنگویی </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="post.html">Sample Post</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+        {% category_navbar %}
         </div>
         <!-- /.container -->
     </nav>
@@ -95,10 +80,13 @@
                            {{blog.title}}
                         </h2>
                         <h3 class="post-subtitle">
-                           {{blog.content | truncatewords:30}}
+                           {{blog.content | truncatewords:30}}                           
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> {{blog.created}}</p>
+                        {% for cat in blog.category.all %}
+                            <a href="#"><span># {{cat.title}}</span></a>                    
+                        {% endfor %} 
+                    <p class="post-meta">نوشته شده توسط<a href="#"> علیرضا</a> {{blog.jcreated}}</p>
                 </div>
                 <hr>
             {% endfor %}
@@ -106,7 +94,7 @@
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
+                        <a href="#">پست های قدیمی تر &larr;</a>
                     </li>
                 </ul>
             </div>
