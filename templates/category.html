@@ -73,6 +73,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h3 class="alert alert-success text-center">دسته بندی : {{category.title}}</h3>
             {% for blog in category.blogs.all %}
                 <div class="post-preview">
                     <a href="{% url 'blog:detail' blog.slug %}">
@@ -92,10 +93,19 @@
             {% endfor %}
 
                 <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                        <a href="#">پست های قدیمی تر &larr;</a>
-                    </li>
+               {% if blogs.has_other_pages %}
+                    <ul class="pager">
+                    <li class="next ml-3">
+                    {% if blogs.has_previous %}
+                        <a href="{% url 'blog:home' %}?page={{blogs.previous_page_number}}">پست های  جدیدتر &rarr;</a>                    
+                    {% endif %}
+                    {% if blogs.has_next %}
+                        <a href="{% url 'blog:home' %}?page={{blogs.next_page_number}}">پست های  قدیمی تر &larr;</a>                     
+                    {% endif %} 
+                {% endif %}
+                                      
+                       
+                </li>
                 </ul>
             </div>
         </div>

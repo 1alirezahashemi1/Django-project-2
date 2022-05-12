@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from extensions.utils import jalali_converter
-# Create your models here.
 
+# Create your models here
 class Blog(models.Model):
     STATUS_CHOICES = (
         ('d',"draft"),
@@ -20,14 +20,13 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "مقاله"
         verbose_name_plural = "مقالات"
-
+    
     def __str__(self):
         return self.title
 
     def jcreated(self):
         return jalali_converter(self.created)
     jcreated.short_description = "تاریخ نوشتن"
-
 
 class Category(models.Model):
     title = models.CharField(max_length=30,verbose_name="عنوان")
@@ -42,3 +41,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+

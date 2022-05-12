@@ -23,3 +23,34 @@ body {
     text-align: right;
     font-family: Sahel !important;
 }
+
+.intro-header .page-heading,
+.intro-header .post-heading,
+.intro-header .site-heading {
+    padding: 97px 0 54px;
+    color: #fa0000;
+}
+
+.caption,
+.intro-header .page-heading,
+.intro-header .site-heading,
+footer .copyright {
+    text-align: center;
+    font-size: 40px;
+}
+
+.post-preview>a>.post-title {
+    font-size: 30px;
+}
+
+.h3,
+h3 {
+    font-size: 20px;
+}
+
+.post-preview>.post-meta {
+    color: #777;
+    font-size: 18px;
+    font-style: inherit;
+    margin-top: 0;
+}

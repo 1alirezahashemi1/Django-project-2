@@ -92,10 +92,19 @@
             {% endfor %}
 
                 <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                        <a href="#">پست های قدیمی تر &larr;</a>
-                    </li>
+                {% if blogs.has_other_pages %}
+                    <ul class="pager">
+                    <li class="next ml-3">
+                    {% if blogs.has_previous %}
+                        <a href="{% url 'blog:home' %}?page={{blogs.previous_page_number}}">پست های  جدیدتر &rarr;</a>                    
+                    {% endif %}
+                    {% if blogs.has_next %}
+                        <a href="{% url 'blog:home' %}?page={{blogs.next_page_number}}">پست های  قدیمی تر &larr;</a>                     
+                    {% endif %} 
+                {% endif %}
+                                      
+                       
+                </li>
                 </ul>
             </div>
         </div>
