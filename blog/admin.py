@@ -18,7 +18,7 @@ admin.site.register(Blog,BlogAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['title','slug','position','status']
+    list_display = ['title','slug','position','parent','status']
     prepopulated_fields = {'slug':('title',)}
     list_filter = ('title','status')
     search_fields = ('title',)

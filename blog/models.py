@@ -29,6 +29,7 @@ class Blog(models.Model):
     jcreated.short_description = "تاریخ نوشتن"
 
 class Category(models.Model):
+    parent = models.ForeignKey('self',default=None,on_delete=models.SET_NULL,null=True,blank=True,related_name='children',verbose_name="زیر دسته")
     title = models.CharField(max_length=30,verbose_name="عنوان")
     slug = models.SlugField(verbose_name="ادرس")
     status = models.BooleanField(verbose_name="نشان داده شود ؟")
@@ -37,7 +38,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "دسته بندی"
         verbose_name_plural = "دسته بندی ها"
-        ordering = ["position"] 
+        ordering = ['parent__id',"position"] 
 
     def __str__(self):
         return self.title
