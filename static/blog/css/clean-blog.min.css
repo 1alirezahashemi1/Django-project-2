@@ -467,3 +467,11 @@ img::-moz-selection {
     color: #fff;
     background: 0 0
 }
+
+body {
+    font-family: Sahel !important;
+    font-size: 20px;
+    -webkit-tap-highlight-color: #0085A1;
+    direction: rtl !important;
+    text-align: right !important;
+}

@@ -2,6 +2,7 @@ from django.contrib import admin
 from . models import Blog , Category
 # Register your models here.
 
+admin.site.site_header = 'وبلاگ جنگویی'
 # First Model
 class BlogAdmin(admin.ModelAdmin):
     list_display = ['title','slug','jcreated','category_to_str','status']
