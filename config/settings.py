@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'extensions'
+    'extensions',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = 'account:home'
+LOGIN_URL = 'account:login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
