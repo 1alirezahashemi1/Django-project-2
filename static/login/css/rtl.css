@@ -1,0 +1,36 @@
+@import url('https://v1.fontapi.ir/css/Sahel');
+body {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: Sahel !important;
+}
+
+.btn-show-pass {
+    font-size: 15px;
+    color: #000000;
+    cursor: pointer;
+    left: 0;
+    right: initial;
+}
+
+.myfont {
+    font-family: Sahel !important;
+}
+
+.focus-input100::after {
+    font-family: Sahel !important;
+    font-size: 15px;
+    color: #999999;
+    line-height: 1.2;
+    content: attr(data-placeholder);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 16px;
+    left: 0px;
+    padding-left: 5px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
