@@ -34,6 +34,6 @@ urlpatterns = [
 #     ),
 ]
 urlpatterns += [
-    path('home',Home,name='home'),
+    path('',ArticleList.as_view(),name='home'),
 
 ]

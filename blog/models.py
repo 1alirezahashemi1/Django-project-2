@@ -16,6 +16,7 @@ class Blog(models.Model):
     updated = models.DateTimeField(auto_now=True,auto_now_add=False)
     thumbnail = models.ImageField(upload_to = 'images/',verbose_name="عکس")
     status =  models.CharField(max_length=1,choices=STATUS_CHOICES,verbose_name="وضعیت مقاله")
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "مقاله"
