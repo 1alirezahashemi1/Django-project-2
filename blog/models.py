@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from extensions.utils import jalali_converter
 
 # Create your models here
@@ -21,6 +22,10 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "مقاله"
         verbose_name_plural = "مقالات"
+
+    def get_absolute_url(self):
+        return reverse('account:home')
+
     
     def __str__(self):
         return self.title
