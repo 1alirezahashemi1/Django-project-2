@@ -7,7 +7,9 @@ from extensions.utils import jalali_converter
 class Blog(models.Model):
     STATUS_CHOICES = (
         ('d',"draft"),
-        ('p', "published")
+        ('p', "published"),
+        ('i',"investigation"),
+        ('b',"back"),
     )
     title = models.CharField(max_length=40,verbose_name="عنوان")
     slug = models.SlugField(verbose_name="ادرس مقاله")

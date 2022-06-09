@@ -1,4 +1,5 @@
 from django.views.generic import *
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Blog
 from .mixins import *
@@ -17,10 +18,15 @@ class ArticleCreate(FieldMixin,FormValidMixin,LoginRequiredMixin,CreateView):
     template_name = 'registration/create-update.html'
 
 
-class ArticleUpdate(AuthorAccessMixin,FieldMixin,FormValidMixin,LoginRequiredMixin,UpdateView):
+class ArticleUpdate(AuthorAccessMixin,FieldMixin,FormValidMixin,UpdateView):
     model = Blog
     template_name = 'registration/create-update.html'
     
+
+class ArticleDelete(SuperUserMixin,LoginRequiredMixin,DeleteView):
+    model = Blog
+    template_name = 'registration/blog_confirm_delete.html'
+    success_url = reverse_lazy('account:home')
 
    
 

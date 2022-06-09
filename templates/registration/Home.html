@@ -76,26 +76,44 @@
   
                 {% for article in object_list %}
                     <tr>
-                      <td><a target ="_blank" href="{% url 'account:article-update' article.pk %}">{{article.title}}</a></td>
+                        {% if article.status in 'db'|make_list or request.user.is_superuser %}
+                            <td><a target ="_blank" href="{% url 'account:article-update' article.pk %}">{{article.title}}</a></td>
+                        
+                        {% else %}
+                            <td>{{article.title}}</td>
+                        {% endif %}
                         <td><img src={{article.thumbnail.url}} width='100'></td>
                         <td>{{article.content| truncatewords:5}}</td>
                         <td>{{article.jcreated}}</td>
                         <td>
-                          {% if article.status == 'p' %}
-                            <span class="badge badge-success">منتشر شده</span>
-                              <a class="badge badge-primary" href="{% url 'blog:detail' article.slug %}">مشاهده مقاله در سایت</a>
-                          {% else %}
-                                <span class="badge badge-warning">پیش نویش</span>
-                          {% endif %}
+                          
+                            {% if article.status == 'p' %}
+                                  <span class="badge badge-success">منتشر شده</span>
+                                  <a class="badge badge-primary" href="{% url 'blog:detail' article.slug %}">مشاهده مقاله </a>
+                            {% elif article.status == 'i' %}
+                                  <span class="badge badge-secondary">در حال بررسی</span>
+                              {% if user.is_superuser %}
+                                <a class="badge badge-secondary" href="{% url 'blog:article-preview' article.pk %}"> پیشنمایش </a>
+                              {% endif %}
+                            {% else %}
+                              {% if article.status == 'd' %}
+                                <span class="badge badge-info">پیش نویش</span>
+                              {% else %}
+                                <span class="badge badge-warning">برگشت داده شده</span>
+                              {% endif %}
+                            {% if user.is_superuser %}
+                                <span class="badge text-danger"><a href="{% url 'account:article-delete' article.pk %}">حذف</a></span>
+                            {% endif %}
+                            {% endif %}
 
-                        
                         </td>
                     </tr>
      
                 {% endfor %}
                 
-
+               
   <!-- Control Sidebar -->
+  
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
