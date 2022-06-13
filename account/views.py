@@ -1,5 +1,6 @@
 from django.views.generic import *
 from django.urls import reverse_lazy
+from .models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Blog
 from .mixins import *
@@ -30,4 +31,11 @@ class ArticleDelete(SuperUserMixin,LoginRequiredMixin,DeleteView):
 
    
 
+class Profile(UpdateView):
+    model = User
+    template_name = 'registration/profile.html' 
+    fields = ['username','first_name','last_name','email','special_user','is_author']
     
+    success_url = reverse_lazy('account:profile')
+    def get_object(self):
+        return User.objects.get(pk = self.request.user.pk)
